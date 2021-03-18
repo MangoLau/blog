@@ -7,7 +7,7 @@
     
     到目标服务器的 /srv/redis 目录下创建新实例的目录：mkdir {$端口号}
 - 创建配置文件：cp /etc/redis.conf /srv/redis/{$端口号}
-- 修改配置文件，需要修改的配置项至少包括：port, pidfile, logfile, dir, save, maxmemory, maxmemory-policy, daemon(设置为1)，还应当按情况考虑需要不需要修改 bind 配置项的值
+- 修改配置文件，需要修改的配置项至少包括： port, pidfile, logfile, dir, save, maxmemory, maxmemory-policy, daemon(设置为1)，还应当按情况考虑需要不需要修改 bind 配置项的值
 - 修改新实例目录和配置文件的权限：chown -R redis:redis /srv/redis/{$端口号}
 - 启动新实例：systemctl start redis@{$端口号}
 - 将新实例注册为服务：systemctl enable redis@{$端口号}
@@ -16,6 +16,9 @@
 
 ## Redis多实例管理脚本：
 使用systemctl管理多个redis实例需要使用redis@.service脚本，可复制192.168.0.212:/lib/systemd/system/redis@.service到目标服务器的相同位置。
+
+`systemctl daemon-reload`
+
 
 文件内容
 ```shell
